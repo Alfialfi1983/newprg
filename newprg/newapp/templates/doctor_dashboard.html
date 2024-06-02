@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care Clinic</title>
+       {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{% static "media/back6.jpg" %}');
+            background-size: cover; /* Cover the entire screen */
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Set the height to 100% of the viewport height */
+            color: #fff; /* Set text color to a suitable contrast with the background */
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-image:url('docapp/images/back6.jpg');
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .nav {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav li {
+            margin-right: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .left-section {
+            width: 100%;
+            padding: 5px;
+            background-color: #ffffff;
+        }
+        .right-section {
+            width: 30%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+         .doctor-details {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: 20px auto;
+        }
+         .custom-button {
+            background-color: #544caf; /* You can change the color by specifying a different HEX or RGB value */
+            color: white; /* Text color */
+            padding: 20px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form {
+    max-width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color:#170404ab;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Health Care Clinic</h1>
+        <ul class="nav">
+            <li><a href="/view_appointments/">Confirm Appointments</a></li>
+            <li><a href="/view-appviadate/">Appointments</a></li>
+            <li><a href="/logout/">Logout</a></li>
+
+        </ul>
+    </div>
+    <div>
+        <form method="post" action="{% url 'delete_appointments' %}">
+            {% csrf_token %}
+            <label for="selected_date">Select Date to Delete Appointments:</label>
+            <input type="date" id="selected_date" name="selected_date" required>
+            <button type="submit" class="custom-button">Delete Appointments</button>
+        </form>
+    </div>
+{% block content %}
+
+{% endblock content %}
+</body>
+</html>

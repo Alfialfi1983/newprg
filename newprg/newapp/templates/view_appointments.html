@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments Booked </title>
+    {% load static %}
+    <style>
+        body {
+              font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{% static "media/back1.webp" %}');
+            background-size: cover; /* Cover the entire screen */
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Set the height to 100% of the viewport height */
+            color: #fff; /* Set text color to a suitable contrast with the background */
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        h2 {
+            color: #f7f2fd;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #36f561;
+            padding: 15px;
+            background-color: #3992ab73;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 35px;
+            transition: transform 0.3s;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .action-buttons {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .confirm-button, .reject-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-right: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-button:hover, .reject-button:hover {
+            background-color: #218838;
+        }
+
+        .reject-button {
+            background-color: #dc3545;
+        }
+
+        p {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Appointments Booked</h2>
+    {% if appointments %}
+        <ul>
+            {% for appointment in appointments %}
+                <li>
+                    <strong>Patient Name:</strong> {{ appointment.user.username }}<br>
+                    <strong>Appointment Date:</strong> {{ appointment.app_date }}<br>
+                    <strong>Appointment Time:</strong> {{ appointment.time_slot }}<br>
+                    <strong>Description:</strong> {{ appointment.description }}<br>
+                    <div class="action-buttons">
+                        <a href="{% url 'confirm_appointment' appointment_id=appointment.app_id %}" class="confirm-button">Confirm</a>
+                        <a href="{% url 'reject_appointment' appointment_id=appointment.app_id %}" class="reject-button">Reject</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No appointments booked yet.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Booking</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #24333c;
+            text-align: center;
+            margin: 50px;
+            background-image: url('{% static "media/back4.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            width: 300px;
+            margin: 20px auto;
+            background-color: #878787;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4c88af;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+    <h2>Book an Appointment</h2>
+
+    <form method="post" action="{% url 'book_appointment' %}" onsubmit="showSuccessMessage()">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div style="color: red;">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="id_app_date">Appointment Date:</label>
+        <input type="date" id="id_app_date" name="app_date" required><br>
+
+        <label for="id_time_slot">Time Slot:</label>
+        <select id="id_time_slot" name="time_slot" required>
+            <option value="09:00">9:00 am</option>
+            <option value="09:30">9:30 am</option>
+            <option value="10:00">10:00 am</option>
+            <option value="10:30">10:30 am</option>
+            <option value="11:00">11:00 am</option>
+            <option value="11:30">11:30 am</option>
+            <option value="12:00">12:00 pm</option>
+            <option value="12:30">12:30 pm</option>
+            <option value="13:00">1:00 pm</option>
+            <!-- Add more options as needed -->
+        </select><br>
+
+        <label for="id_description">Description:</label><br>
+        <textarea id="id_description" name="description" rows="4" cols="50" required></textarea><br>
+
+        <input type="submit" value="Book Appointment">
+    </form>
+</body>
+</html>

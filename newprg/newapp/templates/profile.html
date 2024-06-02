@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+             background-image: url('{% static "media/back4.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #592f2f;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        strong {
+            color: #333;
+        }
+
+        input, button {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Your content block -->
+        <h2>User Profile</h2>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+       <p><strong>Firstname:</strong> {{ user.first_name}}</p>
+       <p><strong>lastname:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        {% if user_profile %}
+            <p><strong>Age:</strong> {{ user_profile.age }}</p>
+            <p><strong>Contact:</strong> {{ user_profile.contact }}</p>
+            <p><strong>Gender:</strong> {{ user_profile.gender }}</p>
+        {% else %}
+            <p>No additional profile information available.</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

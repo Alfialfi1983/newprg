@@ -1,0 +1,99 @@
+<!-- appointments_queue.html -->
+{% load static %}
+<head>
+  <style>
+    /* CSS for styling the page with circles connection */
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+             background-image: url('{% static "media/r.jpeg" %}');
+            background-size: cover; /* Cover the entire screen */
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Set the height to 100% of the viewport height */
+            color: #220303; /* Set text color to a suitable contrast with the background */
+            display: flex;
+            flex-direction: column;
+            }
+
+    .appointment-queue {
+      margin-top: 200px;
+    }
+
+    #appointments-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    li {
+      position: relative;
+      width: calc(100% / {{ appointments|length }});
+    }
+
+    .appointment-line {
+      position: relative;
+      width: 100%;
+      height: 5px; /* Line thickness */
+      background-color: green; /* Imaginary line color */
+      top: 200%;
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      background-color: #180808; /* Circle color */
+      border-radius: 50%;
+      position: absolute;
+      top: 200%;
+      left: 10%;
+      transform: translate(-100%, -50%);
+      z-index: 1;
+    }
+
+    .appointment-content {
+      margin-left: 50px;
+       color: #333; /* Set your desired text color */
+  background-color: #f0f0f0;/* Adjust the margin as needed */
+    }
+  </style>
+
+</head>
+
+{% block content %}
+<body>
+  <h2>Queue Update</h2>
+
+  <div class="appointment-queue">
+    {% if appointments %}
+      <ul id="appointments-list">
+        {% for appointment in appointments %}
+          <li>
+            <div class="circle"></div>
+            <div class="appointment-line"></div>
+            <div class="appointment-content">
+              {{ appointment.user.username }} - {{ appointment.time_slot }}
+              {% if forloop.first %}
+                - Consulting
+              {% elif forloop.counter == 2 %}
+                - Next
+              {% else %}
+                - Waiting
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No appointments for the selected date.</p>
+    {% endif %}
+  </div>
+</body>
+
+{% endblock %}

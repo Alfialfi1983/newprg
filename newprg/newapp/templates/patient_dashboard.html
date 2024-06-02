@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Clinic</title>
+    {% load static %}
+<!-- Add this script tag inside your head or at the end of the body -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('{% static "media/back6.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style for the button that activates the dropdown */
+        .dropdown-button {
+            padding: 10px;
+            background-color: rgba(0,0,0,0.2);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius:30px;
+        }
+
+        /* Style for the dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 5;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for each dropdown item (now using <a> tags) */
+        .dropdown-item a {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Change color on hover */
+        .dropdown-item a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown content when the dropdown button is hovered over */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        header {
+            background-color: #202e33ab;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            background-color:rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 50px;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+         .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color:#202e33;;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Health Clinic</h1>
+    </header>
+
+    <nav>
+        <li><a href="/bkapp/">Make Appointment</a></li>
+        <li><a href="{% url 'user_prescriptions' %}">Prescription</a></li>
+        <li> <a href="{% url 'appointments_position' %}">Queue</a></li>
+        <li><a href="{% url 'appointment_status' %}">Status</a></li>
+         <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+        <li><a href="/logout/">Logout</a></li>
+    </nav>
+
+    <!-- Your main content goes here -->
+
+    <footer>
+        <p>Email: info@healthclinic.com</p>
+        <p>Follow us on: <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Instagram</a></p>
+    </footer>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+             background-image: url('{% static "media/back4.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #592f2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #b9787891;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin: auto; /* Center the container */
+
+
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-height:4000px;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            margin-bottom: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        select {
+            margin-bottom: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Your content block -->
+        <h2>Edit Profile</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_first_name">First Name:</label>
+            {{ user_form.first_name }}
+
+            <label for="id_last_name">Last Name:</label>
+            {{ user_form.last_name }}
+
+            <label for="id_email">Email:</label>
+            {{ user_form.email }}
+
+            <label for="id_age">Age:</label>
+            {{ profile_form.age }}
+
+            <label for="id_contact">Contact:</label>
+            {{ profile_form.contact }}
+
+            <label for="id_gender">Gender:</label>
+            {{ profile_form.gender }}
+
+            <button type="submit">Save changes</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

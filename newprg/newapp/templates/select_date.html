@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Date</title>
+      {% load static %}
+    <style>
+         button {
+            background-color:#1699ca;
+            color: #fff;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+
+        }
+
+
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: white;
+            cursor: pointer;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        body {
+              font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{% static "media/back1.webp" %}');
+            background-size: cover; /* Cover the entire screen */
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Set the height to 100% of the viewport height */
+            color: #fff; /* Set text color to a suitable contrast with the background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            color: #9cc3f0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #495057;
+            padding: 15px;
+            background-color: #3992ab;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+        }
+
+        strong {
+            color: #333;
+        }
+
+        .action-buttons {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .confirm-button, .reject-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-button:hover, .reject-button:hover {
+            background-color: #218838;
+        }
+
+        .reject-button {
+            background-color: #dc3545;
+        }
+
+        p {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select Date</h2>
+    <form method="post" action="{% url 'view_appviadate' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">View Appointments</button>
+    </form>
+</body>
+</html>
